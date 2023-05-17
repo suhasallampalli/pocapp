@@ -1,0 +1,40 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <title>Task Tracker</title>
+</head>
+<body>
+    <center>
+        <h1> Task Tracker</h1>
+    <main>
+        <input type="text" id="name-input" placeholder="Enter Task Name">
+        <button id="add-name-btn">Add Task</button>
+
+        <br><br>
+
+        <div>
+           <input type="text" placeholder="Search Task" id="search-input">
+           <button id="search-btn">Search</button>
+        </div>
+
+        <table id="table">
+            <thead>
+                <th>Task Name</th>
+                <th>Date Added</th>
+                <th>Delete</th>
+                <th>Edit</th>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <section hidden id="update-row">
+            <input type="text" id="update-name-input" placeholder="Enter New Task Name">
+            <button id="update-row-btn">Update</button>
+        </section>
+    </main>
+</center>
+    <script type="application/javascript" src="../js/script.js"></script>
+</body>
+</html>
