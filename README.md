@@ -3,7 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------------
 
 A simple web application is build for keeping a track of the tasks that are done in a particular period of time.
-The application is built using HTML5, CSS3, JavaScript, Node.js v18.16.0 and MySQL v8.0.33. 
+The application is built using HTML5, CSS3, Bootstrap, JavaScript, Node.js v18.16.0 and MySQL v8.0.33. 
 
 -----------------------------------------------------------------------------------------------------------------------------
 
