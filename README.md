@@ -20,5 +20,5 @@ The application is built using HTML5, CSS3, Bootstrap, JavaScript, Node.js v18.1
 Steps to run the application on localhost
 -> Install Node.js v18.16.0 and MySQL v8.0.33.
 -> Import all the necessary modules mentioned in index.js and dbService.js
--> Run the database by starting the MySQL server on your machine and by using the command "node index.js"
+-> Run the database by starting the MySQL server on your machine and by using the command "node index.js".
 -> Use the live server to host the application on localhost by clicking the "Go Live" button in Visual Studio Code.

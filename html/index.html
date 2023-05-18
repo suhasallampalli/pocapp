@@ -1,40 +1,53 @@
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <title>Task Tracker</title>
 </head>
 <body>
-    <center>
-        <h1> Task Tracker</h1>
-    <main>
-        <input type="text" id="name-input" placeholder="Enter Task Name">
-        <button id="add-name-btn">Add Task</button>
-
-        <br><br>
-
-        <div>
-           <input type="text" placeholder="Search Task" id="search-input">
-           <button id="search-btn">Search</button>
+    <div class="container">
+        <div class="text-center">
+            <h1>Task Tracker</h1>
         </div>
+        <main>
+            <div class="form-row align-items-center">
+                <div class="col-sm-8 my-1">
+                    <input type="text" class="form-control" id="name-input" placeholder="Enter Task Name">
+                </div>
+                <div class="col-auto my-1">
+                    <button class="btn btn-primary" id="add-name-btn">Add Task</button>
+                </div>
+                <div class="col-sm-8 my-1">
+                <input type="text" class="form-control" placeholder="Search Task" id="search-input">
+                </div>
+                <div class="col-auto my-1">
+                    <button class="btn btn-primary" id="search-btn">Search</button>
+                </div>
+            </div>
 
-        <table id="table">
-            <thead>
-                <th>Task Name</th>
-                <th>Date Added</th>
-                <th>Delete</th>
-                <th>Edit</th>
-            </thead>
-            <tbody></tbody>
-        </table>
+            <table class="table mt-4">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Task Name</th>
+                        <th>Date Added</th>
+                        <th>Delete Task</th>
+                        <th>Edit Task</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
 
-        <section hidden id="update-row">
-            <input type="text" id="update-name-input" placeholder="Enter New Task Name">
-            <button id="update-row-btn">Update</button>
-        </section>
-    </main>
-</center>
+            <section hidden id="update-row">
+                <input type="text" class="form-control" id="update-name-input" placeholder="Enter New Task Name">
+                <button class="btn btn-primary mt-2" id="update-row-btn">Update</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script type="application/javascript" src="../js/script.js"></script>
 </body>
 </html>
