@@ -13,16 +13,17 @@ document.addEventListener('DOMContentLoaded', function () {
   const tbody = document.querySelector('table tbody');
 
   tbody.addEventListener('click', function (event) {
-    if (event.target.className === 'delete-row-btn') {
+    if (event.target.className === 'btn btn-danger') {
       deleteRowById(event.target.dataset.task_id);
     }
-    if (event.target.className === 'edit-row-btn') {
+    if (event.target.className === 'btn btn-outline-light btn-secondary') {
       handleEditRow(event.target.dataset.task_id);
     }
   });
 });
 
 const updateBtn = document.querySelector('#update-row-btn');
+
 const searchBtn = document.querySelector('#search-btn');
 
 searchBtn.onclick = function () {
@@ -88,7 +89,7 @@ updateBtn.onclick = function () {
 
 const addBtn = document.querySelector('#add-name-btn');
 
-addBtn.onclick = function () {
+addBtn.addEventListener('click', function () {
   const nameInput = document.querySelector('#name-input');
   const name = nameInput.value;
   nameInput.value = '';
@@ -104,7 +105,7 @@ addBtn.onclick = function () {
     .then(response => response.json())
     .then(data => insertRowIntoTable(data))
     .catch(error => console.log(error));
-}
+})
 
 function insertRowIntoTable(data) {
   const table = document.querySelector('table tbody');
@@ -121,8 +122,8 @@ function insertRowIntoTable(data) {
     }
   }
 
-  tableHtml += `<td><button class="delete-row-btn" data-task_id=${data.task_id}>Delete</td>`;
-  tableHtml += `<td><button class="edit-row-btn" data-task_id=${data.task_id}>Edit</td>`;
+  tableHtml += `<td><button class="btn btn-danger" data-task_id=${data.task_id}>Delete</td>`;
+  tableHtml += `<td><button class="btn btn-outline-light btn-secondary" data-task_id=${data.task_id}>Edit</td>`;
 
   const newRow = table.insertRow();
   newRow.innerHTML = tableHtml;
@@ -147,9 +148,9 @@ function loadHTMLTable(data) {
 
   data.forEach(function ({ task_id, task_name, task_date }) {
     tableHtml += `<tr data-task_id=${task_id}><td>${task_name}</td><td>${new Date(task_date).toLocaleString()}</td>
-                  <td><button class="delete-row-btn" data-task_id=${task_id}>Delete</td>
-                  <td><button class="edit-row-btn" data-task_id=${task_id}>Edit</td></tr>`;
+                  <td><button class="btn btn-danger" data-task_id=${task_id}>Delete</td>
+                  <td><button class="btn btn-outline-light btn-secondary" data-task_id=${task_id}>Edit</td></tr>`;
   });
 
   table.innerHTML = tableHtml;
-}  
+}
