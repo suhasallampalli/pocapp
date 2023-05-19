@@ -8,27 +8,26 @@
     <title>Task Tracker</title>
 </head>
 <body>
-    <div class="container">
-        <div class="text-center">
-            <h1>Task Tracker</h1>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1" style="font-size: 40px; color:royalblue; font-family: 'Baskerville', serif;">Task Tracker</span>
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <form class="d-flex align-items-center">
+            <input type="text" class="form-control" id="name-input" placeholder="Enter Task Name" style="width: 350px">
+            <button class="btn btn-primary" id="add-name-btn">Add Task</button>
+            <input type="text" class="form-control" id="search-input" placeholder="Search Task Name" style="width: 350px">
+            <button class="btn btn-primary" id="search-btn">Search Task</button>
+          </form>
         </div>
-        <main>
-            <div class="form-row align-items-center">
-                <div class="col-sm-8 my-1">
-                    <input type="text" class="form-control" id="name-input" placeholder="Enter Task Name">
-                </div>
-                <div class="col-auto my-1">
-                    <button class="btn btn-primary" id="add-name-btn">Add Task</button>
-                </div>
-                <div class="col-sm-8 my-1">
-                <input type="text" class="form-control" placeholder="Search Task" id="search-input">
-                </div>
-                <div class="col-auto my-1">
-                    <button class="btn btn-primary" id="search-btn">Search</button>
-                </div>
-            </div>
-
-            <table class="table mt-4">
+    </nav>
+    <section hidden id="update-row">
+        <div class="d-flex flex-row justify-content-center">
+          <input type="text" class="form-control" id="update-name-input" placeholder="Enter New Task Name" style="width: 350px">
+          <button class="btn btn-warning" id="update-row-btn">Update</button>
+        </div>
+    </section>
+            <table class="table table-sm mt-4 ml-1 mr-1 table-hover table-rounded">
                 <thead class="thead-dark">
                     <tr>
                         <th>Task Name</th>
@@ -39,14 +38,8 @@
                 </thead>
                 <tbody></tbody>
             </table>
-
-            <section hidden id="update-row">
-                <input type="text" class="form-control" id="update-name-input" placeholder="Enter New Task Name">
-                <button class="btn btn-primary mt-2" id="update-row-btn">Update</button>
-            </section>
-        </main>
     </div>
-
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script type="application/javascript" src="../js/script.js"></script>
 </body>
