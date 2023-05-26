@@ -110,20 +110,28 @@ class DbService {
   }
 
   async searchByName(task_name) {
-    try {
-      const response = await new Promise((resolve, reject) => {
+      try {
+        if (!task_name) {
+          throw new Error('Invalid task name');
+        }
+    
         const query = "SELECT * FROM task_table WHERE task_name = ?;";
-        connection.query(query, [task_name], (err, results) => {
-          if (err) reject(new Error(err.message));
-          resolve(results);
+        const response = await new Promise((resolve, reject) => {
+          connection.query(query, [task_name], (err, results) => {
+            if (err) {
+              reject(new Error(err.message));
+            } else {
+              resolve(results);
+            }
+          });
         });
-      });
+  
       return response;
     } catch (error) {
       console.log(error);
       return [];
     }
-  }
+  }  
 }
 
 module.exports = DbService;

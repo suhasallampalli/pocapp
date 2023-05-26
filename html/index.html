@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules//bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <title>Task Tracker</title>
 </head>
@@ -11,8 +11,6 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <span class="navbar-brand mb-0 h1" style="font-size: 40px; color:royalblue; font-family: 'Baskerville', serif;">Task Tracker</span>
-            <span class="navbar-toggler-icon"></span>
-          </button>
           <form class="d-flex align-items-center">
             <input type="text" class="form-control" id="name-input" placeholder="Enter Task Name" style="width: 350px">
             <button class="btn btn-primary" id="add-name-btn">Add Task</button>
@@ -28,7 +26,7 @@
         </div>
     </section>
             <table class="table table-sm mt-4 ml-1 mr-1 table-hover table-rounded">
-                <thead class="thead-dark">
+                <thead class="table-dark">
                     <tr>
                         <th>Task Name</th>
                         <th>Date Added</th>
@@ -38,9 +36,10 @@
                 </thead>
                 <tbody></tbody>
             </table>
-    </div>
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+             
     <script type="application/javascript" src="../js/script.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    
 </body>
 </html>

@@ -1,6 +1,4 @@
-/**
- * Defining the List of dependencies/modules
- */
+// Defining the List of dependencies/modules
 var express = require('express');
 const dbService = require('./dbService');
 const cors = require('cors');
@@ -10,9 +8,7 @@ var app = express();
 app.use(cors());
 app.options('*', cors());
 
-/**
- * API to get the task details from the database using the database
- */
+//API to get the task details from the database using the database
 app.get('/tasks', function (req, res) {
   const db = dbService.getDbServiceInstance();
 
@@ -71,12 +67,16 @@ app.patch('/update', (req, res) => {
 // API for searching the task based on the task_name
 app.get('/search/:task_name', (request, response) => {
   const { task_name } = request.params;
-  const db = dbService.getDbServiceInstance();
+  console.log('Search query:', task_name); // Add this line to check the search query
 
+  const db = dbService.getDbServiceInstance();
   const result = db.searchByName(task_name);
 
   result
-    .then(data => response.json({ data: data }))
+    .then(data => {
+      console.log('Search results:', data); // Add this line to check the search results
+      response.json({ data: data });
+    })
     .catch(err => console.log(err));
 });
 

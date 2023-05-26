@@ -1,9 +1,8 @@
-
 .table-hover tr:hover {
-  background-color: #f8f9fa; /* Change to your desired grey color */
+  background-color: #f8f9fa; 
 }
 
 .table-rounded {
-  border-radius: 10px; /* Change the value to adjust the curvature */
+  border-radius: 10px; 
   overflow: hidden;
 }
