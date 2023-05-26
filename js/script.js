@@ -1,3 +1,55 @@
+/**
+ * Utility function to handle the edit row
+ * @param {*} id 
+ */
+function handleEditRow(id) {
+  const updateSection = document.querySelector('#update-row');
+  updateSection.hidden = false;
+  document.querySelector('#update-name-input').dataset.id = id;
+}
+
+/**
+ * Function to handle the delete row 
+ * @param {*} id 
+ */
+function deleteRowById(id) {
+  fetch(`http://127.0.0.1:3000/remove/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        location.reload();
+      }
+    })
+    .catch(error => console.log(error));
+}
+
+//Utility Function to load the HTML table
+function loadHTMLTable(data) {
+  const table = document.querySelector('table tbody');
+
+  if (data.length === 0) {
+    table.innerHTML = "<tr><td colspan='3' class='no-data'>No Data</td></tr>";
+    return;
+  }
+
+  let tableHtml = '';
+
+  data.forEach(function ({ task_id, task_name, task_date }) {
+    tableHtml += `<tr data-task_id=${task_id}><td>${task_name}</td><td>${new Date(task_date).toLocaleString()}</td>
+                  <td><button class="btn btn-danger" data-task_id=${task_id}>Delete</td>
+                  <td><button class="btn btn-outline-light btn-secondary" data-task_id=${task_id}>Edit</td></tr>`;
+  });
+
+  table.innerHTML = tableHtml;
+}
+
+//Function to render the default initial view to load all the tasks
 document.addEventListener('DOMContentLoaded', function () {
   fetch('http://127.0.0.1:3000/tasks', {
     method: 'GET',
@@ -22,10 +74,8 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-const updateBtn = document.querySelector('#update-row-btn');
-
+//Search button functionality
 const searchBtn = document.querySelector('#search-btn');
-
 searchBtn.onclick = function () {
   const searchValue = document.querySelector('#search-input').value;
 
@@ -41,29 +91,8 @@ searchBtn.onclick = function () {
     .catch(error => console.log(error));
 }
 
-function deleteRowById(id) {
-  fetch(`http://127.0.0.1:3000/remove/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    }
-  })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        location.reload();
-      }
-    })
-    .catch(error => console.log(error));
-}
-
-function handleEditRow(id) {
-  const updateSection = document.querySelector('#update-row');
-  updateSection.hidden = false;
-  document.querySelector('#update-name-input').dataset.id = id;
-}
-
+//Update Button functionality
+const updateBtn = document.querySelector('#update-row-btn');
 updateBtn.onclick = function () {
   const updateNameInput = document.querySelector('#update-name-input');
 
@@ -87,8 +116,8 @@ updateBtn.onclick = function () {
     .catch(error => console.log(error));
 }
 
+//Event listener for the Add Name button , so when the button is clicked, this function will be called
 const addBtn = document.querySelector('#add-name-btn');
-
 addBtn.addEventListener('click', function () {
   const nameInput = document.querySelector('#name-input');
   const name = nameInput.value;
@@ -107,6 +136,10 @@ addBtn.addEventListener('click', function () {
     .catch(error => console.log(error));
 })
 
+/**
+ * During add name, it will insert a new record into the DOM
+ * @param {*} data 
+ */
 function insertRowIntoTable(data) {
   const table = document.querySelector('table tbody');
   const isTableData = table.querySelector('.no-data');
@@ -134,23 +167,4 @@ function insertRowIntoTable(data) {
     const newRow = table.insertRow();
     newRow.innerHTML = tableHtml;
   }
-}
-
-function loadHTMLTable(data) {
-  const table = document.querySelector('table tbody');
-
-  if (data.length === 0) {
-    table.innerHTML = "<tr><td colspan='3' class='no-data'>No Data</td></tr>";
-    return;
-  }
-
-  let tableHtml = '';
-
-  data.forEach(function ({ task_id, task_name, task_date }) {
-    tableHtml += `<tr data-task_id=${task_id}><td>${task_name}</td><td>${new Date(task_date).toLocaleString()}</td>
-                  <td><button class="btn btn-danger" data-task_id=${task_id}>Delete</td>
-                  <td><button class="btn btn-outline-light btn-secondary" data-task_id=${task_id}>Edit</td></tr>`;
-  });
-
-  table.innerHTML = tableHtml;
 }
