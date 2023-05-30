@@ -17,7 +17,7 @@ connection.connect((err) => {
   if (err) {
     console.log(err.message);
   }
-  console.log('db ' + connection.state);
+  console.log('Database ' + connection.state);
 });
 
 class DbService {

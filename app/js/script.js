@@ -13,7 +13,7 @@ function handleEditRow(id) {
  * @param {*} id 
  */
 function deleteRowById(id) {
-  fetch(`http://127.0.0.1:3000/remove/${id}`, {
+  fetch(`http://127.0.0.1:4000/remove/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -47,11 +47,13 @@ function loadHTMLTable(data) {
   });
 
   table.innerHTML = tableHtml;
+
+  console.log(table);
 }
 
 //Function to render the default initial view to load all the tasks
 document.addEventListener('DOMContentLoaded', function () {
-  fetch('http://127.0.0.1:3000/tasks', {
+  fetch('http://127.0.0.1:4000/tasks', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -79,7 +81,7 @@ const searchBtn = document.querySelector('#search-btn');
 searchBtn.onclick = function () {
   const searchValue = document.querySelector('#search-input').value;
 
-  fetch(`http://127.0.0.1:3000/search/${searchValue}`, {
+  fetch(`http://127.0.0.1:4000/search/${searchValue}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -96,7 +98,7 @@ const updateBtn = document.querySelector('#update-row-btn');
 updateBtn.onclick = function () {
   const updateNameInput = document.querySelector('#update-name-input');
 
-  fetch('http://127.0.0.1:3000/update', {
+  fetch('http://127.0.0.1:4000/update', {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -123,7 +125,7 @@ addBtn.addEventListener('click', function () {
   const name = nameInput.value;
   nameInput.value = '';
 
-  fetch('http://127.0.0.1:3000/upload', {
+  fetch('http://127.0.0.1:4000/upload', {
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*'
