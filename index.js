@@ -2,12 +2,15 @@
 var express = require('express');
 const dbService = require('./dbService');
 const cors = require('cors');
+const path = require('path');
+const mime = require('mime');
+
 
 var app = express();
 
 app.use(cors());
 app.options('*', cors());
-app.use(express.static('app'));
+
 
 //API to get the task details from the database using the database
 app.get('/tasks', function (req, res) {
@@ -80,6 +83,20 @@ app.get('/search/:task_name', (request, response) => {
     })
     .catch(err => console.log(err));
 });
+
+
+
+//All static content is in here, serving them using express server
+app.use(express.static('app'));
+
+// Serve dependencies from the node_modules directory
+app.use('/vendor', express.static(path.join(__dirname, 'node_modules')));
+
+// Route for the root URL
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname,'app', 'index.html'));
+});
+
 
 app.listen(4000, function () {
   console.log('App listening on http://127.0.0.1:4000/');

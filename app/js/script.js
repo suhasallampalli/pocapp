@@ -28,9 +28,10 @@ function deleteRowById(id) {
     })
     .catch(error => console.log(error));
 }
-
+var count=1;
 //Utility Function to load the HTML table
 function loadHTMLTable(data) {
+  console.log('Load HTML Count {}',data);
   const table = document.querySelector('table tbody');
 
   if (data.length === 0) {
@@ -53,6 +54,7 @@ function loadHTMLTable(data) {
 
 //Function to render the default initial view to load all the tasks
 document.addEventListener('DOMContentLoaded', function () {
+ 
   fetch('http://127.0.0.1:4000/tasks', {
     method: 'GET',
     headers: {
