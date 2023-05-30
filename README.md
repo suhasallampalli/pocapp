@@ -10,6 +10,7 @@ The application is built using HTML5, CSS3, Bootstrap, JavaScript, Node.js v18.1
 -> index.html contains all the basic HTML of the application.
 -> style.css contains all the CSS of the application.
 -> script.js contains all the client side functionality.
+-> script-demo.js contains the algorithm of the functionality. 
 -> index.js contains all the server side coding with the configution of APIs.
 -> dbService.js contains the database connectivity to the Node.js
 -> The backend APIs have been tested initially using Postman. 

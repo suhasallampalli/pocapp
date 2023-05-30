@@ -28,7 +28,7 @@ function deleteRowById(id) {
     })
     .catch(error => console.log(error));
 }
-var count=1;
+
 //Utility Function to load the HTML table
 function loadHTMLTable(data) {
   console.log('Load HTML Count {}',data);
@@ -47,14 +47,23 @@ function loadHTMLTable(data) {
                   <td><button class="btn btn-outline-light btn-secondary" data-task_id=${task_id}>Edit</td></tr>`;
   });
 
+
+  table.addEventListener('click', function (event) {
+    if (event.target.className === 'btn btn-danger') {
+      deleteRowById(event.target.dataset.task_id);
+    }
+    if (event.target.className === 'btn btn-outline-light btn-secondary') {
+      handleEditRow(event.target.dataset.task_id);
+    }
+  });
+
   table.innerHTML = tableHtml;
 
   console.log(table);
 }
 
 //Function to render the default initial view to load all the tasks
-document.addEventListener('DOMContentLoaded', function () {
- 
+function initialLoadAllTasks(){
   fetch('http://127.0.0.1:4000/tasks', {
     method: 'GET',
     headers: {
@@ -66,23 +75,15 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(data => loadHTMLTable(data.data))
     .catch(error => console.log(error));
 
-  const tbody = document.querySelector('table tbody');
+}
 
-  tbody.addEventListener('click', function (event) {
-    if (event.target.className === 'btn btn-danger') {
-      deleteRowById(event.target.dataset.task_id);
-    }
-    if (event.target.className === 'btn btn-outline-light btn-secondary') {
-      handleEditRow(event.target.dataset.task_id);
-    }
-  });
-});
+initialLoadAllTasks();
 
 //Search button functionality
 const searchBtn = document.querySelector('#search-btn');
-searchBtn.onclick = function () {
+searchBtn.onclick = function (event) {
   const searchValue = document.querySelector('#search-input').value;
-
+  event.preventDefault(); // Prevent the default form submission behavior
   fetch(`http://127.0.0.1:4000/search/${searchValue}`, {
     method: 'GET',
     headers: {
@@ -97,9 +98,9 @@ searchBtn.onclick = function () {
 
 //Update Button functionality
 const updateBtn = document.querySelector('#update-row-btn');
-updateBtn.onclick = function () {
+updateBtn.onclick = function (event) {
   const updateNameInput = document.querySelector('#update-name-input');
-
+  event.preventDefault();
   fetch('http://127.0.0.1:4000/update', {
     method: 'PATCH',
     headers: {
@@ -123,6 +124,7 @@ updateBtn.onclick = function () {
 //Event listener for the Add Name button , so when the button is clicked, this function will be called
 const addBtn = document.querySelector('#add-name-btn');
 addBtn.addEventListener('click', function () {
+  event.preventDefault();
   const nameInput = document.querySelector('#name-input');
   const name = nameInput.value;
   nameInput.value = '';
@@ -136,39 +138,6 @@ addBtn.addEventListener('click', function () {
     body: JSON.stringify({ task_name: name })
   })
     .then(response => response.json())
-    .then(data => insertRowIntoTable(data))
+    .then(data => initialLoadAllTasks())
     .catch(error => console.log(error));
 })
-
-/**
- * During add name, it will insert a new record into the DOM
- * @param {*} data 
- */
-function insertRowIntoTable(data) {
-  const table = document.querySelector('table tbody');
-  const isTableData = table.querySelector('.no-data');
-
-  let tableHtml = '';
-
-  for (const key in data) {
-    if (data.hasOwnProperty(key)) {
-      if (key === 'task_date') {
-        data[key] = new Date(data[key]).toLocaleString();
-      }
-      tableHtml += `<td>${data[key]}</td>`;
-    }
-  }
-
-  tableHtml += `<td><button class="btn btn-danger" data-task_id=${data.task_id}>Delete</td>`;
-  tableHtml += `<td><button class="btn btn-outline-light btn-secondary" data-task_id=${data.task_id}>Edit</td>`;
-
-  const newRow = table.insertRow();
-  newRow.innerHTML = tableHtml;
-
-  if (isTableData) {
-    table.innerHTML = tableHtml;
-  } else {
-    const newRow = table.insertRow();
-    newRow.innerHTML = tableHtml;
-  }
-}
