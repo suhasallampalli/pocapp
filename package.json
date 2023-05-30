@@ -1,10 +1,11 @@
 {
-  "name": "cricketscorer",
+  "name": "tasktracker",
   "version": "1.0.0",
-  "description": "App used to manage cricket scores",
+  "description": "App used to manage tasks",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "Sandeep Allampalli, Suhas Allampalli",
   "license": "ISC",

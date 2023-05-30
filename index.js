@@ -7,6 +7,7 @@ var app = express();
 
 app.use(cors());
 app.options('*', cors());
+app.use(express.static('app'));
 
 //API to get the task details from the database using the database
 app.get('/tasks', function (req, res) {
@@ -80,6 +81,6 @@ app.get('/search/:task_name', (request, response) => {
     .catch(err => console.log(err));
 });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(4000, function () {
+  console.log('App listening on http://127.0.0.1:4000/');
 });
