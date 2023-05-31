@@ -138,6 +138,6 @@ addBtn.addEventListener('click', function () {
     body: JSON.stringify({ task_name: name })
   })
     .then(response => response.json())
-    .then(data => initialLoadAllTasks())
+    .then(() => initialLoadAllTasks())
     .catch(error => console.log(error));
 })

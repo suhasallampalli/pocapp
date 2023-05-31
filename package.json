@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "echo 'Build script executed'",
+    "lint": "eslint app"
   },
   "author": "Sandeep Allampalli, Suhas Allampalli",
   "license": "ISC",
@@ -19,7 +21,12 @@
     "jquery": "^3.7.0",
     "mime": "^3.0.0",
     "mysql": "^2.18.1",
+    "nano": "^10.1.2",
+    "node-couchdb": "^2.0.0",
     "path": "^0.12.7",
     "static": "^2.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.41.0"
   }
 }
