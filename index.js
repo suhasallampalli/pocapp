@@ -5,12 +5,10 @@ const cors = require('cors');
 const path = require('path');
 const mime = require('mime');
 
-
 var app = express();
 
 app.use(cors());
 app.options('*', cors());
-
 
 //API to get the task details from the database using the database
 app.get('/tasks', function (req, res) {
@@ -84,8 +82,6 @@ app.get('/search/:task_name', (request, response) => {
     .catch(err => console.log(err));
 });
 
-
-
 //All static content is in here, serving them using express server
 app.use(express.static('app'));
 
@@ -96,7 +92,6 @@ app.use('/vendor', express.static(path.join(__dirname, 'node_modules')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname,'app', 'index.html'));
 });
-
 
 app.listen(4000, function () {
   console.log('App listening on http://127.0.0.1:4000/');
